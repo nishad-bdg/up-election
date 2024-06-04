@@ -1,4 +1,4 @@
-import { Candidate } from "@/app/page";
+import { Candidate, VoteCenter, VoteCounter } from "@/app/page";
 import {
   Table,
   TableBody,
@@ -13,54 +13,38 @@ import Image from "next/image";
 
 interface Props {
   candidates: Candidate[];
+  voteCenters: VoteCenter[];
+  voteCounter: VoteCounter[];
+  unionId: string;
 }
 
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-];
+const TableData = ({
+  candidates,
+  voteCenters,
+  voteCounter,
+  unionId,
+}: Props) => {
+  const countVoteData = (candidateId: string, centerId: string) => {
+    const result = voteCounter.find(
+      (x) => x.candidate === candidateId && x.voteCenter._id === centerId
+    );
+    if (result) {
+      return result.votes;
+    }
+    return 0;
+  };
 
-const TableData = ({ candidates }: Props) => {
+  const subTotal = (candidateId: string, unionId: string) => {
+    console.info(candidateId);
+    const result = voteCounter.filter(
+      (x) => x.candidate === candidateId && x.voteCenter.union === unionId
+    );
+
+    const total = result.reduce((total, vote) => total + vote.votes, 0);
+
+    return total;
+  };
+
   return (
     <Table>
       <TableHeader>
@@ -68,7 +52,7 @@ const TableData = ({ candidates }: Props) => {
           <TableHead className="w-[100px]">কেন্দ্রের নাম</TableHead>
           {candidates.map((c) => (
             <TableHead key={c._id}>
-            <Image src={c.symbolUrl} alt="symbol" width={120} height={120} />
+              <Image src={c.symbolUrl} alt="symbol" width={120} height={120} />
             </TableHead>
           ))}
 
@@ -76,19 +60,30 @@ const TableData = ({ candidates }: Props) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+        {voteCenters.map((center, index) => (
+          <TableRow key={center._id}>
+            <TableCell className="font-medium lg:w-[500px]">
+              {center.name}
+            </TableCell>
+
+            {candidates.map((can) => (
+              <TableCell key={can._id}>
+                {countVoteData(can._id, center._id)}
+              </TableCell>
+            ))}
+
+            <TableCell className="text-right">{center.totalVotes}</TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={3}>মোট</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
+          <TableCell>মোট</TableCell>
+          {candidates.map((can, index) => (
+            <TableCell key={can._id + index}>
+              {subTotal(can._id, unionId)}
+            </TableCell>
+          ))}
         </TableRow>
       </TableFooter>
     </Table>
