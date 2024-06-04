@@ -1,0 +1,14 @@
+[
+  {
+    "candidate": [
+      {
+        "id": 1,
+        "candidate": "candidate1"
+      },
+      {
+        "id": 2,
+        "name": "candidate2"
+      }
+    ]
+  }
+]
