@@ -20,10 +20,11 @@ export interface CreateVoteCenter {
 }
 
 interface Props {
+  loading: boolean;
   onSubmitFormData: ({ name, unionId, totalVotes }: CreateVoteCenter) => void;
 }
 
-const VoteCenterForm = ({ onSubmitFormData }: Props) => {
+const VoteCenterForm = ({ onSubmitFormData, loading }: Props) => {
   const [unionsData, setUnionsData] = useState<Union[]>([]);
   const [union, setUnion] = useState<string>("");
   const [centerName, setCenterName] = useState<string>("");
@@ -82,7 +83,9 @@ const VoteCenterForm = ({ onSubmitFormData }: Props) => {
         value={totalVotes}
         onChange={(e) => setTotalVotes(Number(e.target.value))}
       />
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={loading ? true : false}>
+        {loading ? "working...." : "Submit"}
+      </Button>
     </form>
   );
 };

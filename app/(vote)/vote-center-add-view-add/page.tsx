@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 
 const VoteCenter = () => {
   const [unionsData, setUnionsData] = useState<Union[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const fetchUnionData = () => {
     unions().then((u) => {
       setUnionsData(u.data);
@@ -20,19 +21,23 @@ const VoteCenter = () => {
   }, []);
 
   const onSubmit = (data: CreateVoteCenter) => {
+    setLoading(true);
     createVoteCenter(data)
       .then((res) => {
         if (res) {
           alert("Successfully created");
           fetchUnionData();
+          setLoading(false);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setLoading(false);
+      });
   };
 
   return (
     <div className="container flex flex-col gap-12">
-      <VoteCenterForm onSubmitFormData={onSubmit} />
+      <VoteCenterForm onSubmitFormData={onSubmit} loading={loading} />
       {unionsData.map((union, index) => (
         <>
           <h1>{union.name}</h1>
