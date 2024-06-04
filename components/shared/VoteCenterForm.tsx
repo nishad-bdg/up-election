@@ -44,15 +44,6 @@ const VoteCenterForm = ({ onSubmitFormData }: Props) => {
       });
       setCenterName("");
     }
-    // if (union) {
-    //   createVoteCenter({
-    //     name: centerName,
-    //     totalVotes: Number(totalVotes),
-    //     unionId: union,
-    //   })
-    //     .then((res) => console.info(res))
-    //     .catch((err) => console.error(err));
-    // }
   }
   return (
     <form onSubmit={onSubmit}>
@@ -90,7 +81,7 @@ const VoteCenterForm = ({ onSubmitFormData }: Props) => {
         required
         placeholder="Total Votes"
         value={totalVotes}
-        onChange={(e) => setTotalVotes(e.target.value)}
+        onChange={(e) => setTotalVotes(Number(e.target.value))}
       />
       <Button type="submit">Submit</Button>
     </form>
