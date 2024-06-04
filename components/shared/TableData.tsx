@@ -2,7 +2,6 @@ import { Candidate, VoteCenter, VoteCounter } from "@/app/page";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
