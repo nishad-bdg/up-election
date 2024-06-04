@@ -42,7 +42,6 @@ const VoteCenterForm = ({ onSubmitFormData }: Props) => {
         totalVotes: totalVotes,
         unionId: union,
       });
-      setCenterName("");
     }
   }
   return (
