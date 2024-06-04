@@ -11,7 +11,6 @@ import {
 import { Button } from "../ui/button";
 import { unions } from "@/api/getUnions";
 import { Union } from "@/app/page";
-import { createVoteCenter } from "@/api/createVoteCenter";
 
 export interface CreateVoteCenter {
   name: string;
@@ -43,6 +42,9 @@ const VoteCenterForm = ({ onSubmitFormData, loading }: Props) => {
         totalVotes: totalVotes,
         unionId: union,
       });
+      setTimeout(() => {
+        setCenterName("");
+      }, 2000);
     }
   }
   return (
