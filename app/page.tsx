@@ -55,10 +55,10 @@ export default function Home() {
   }, []);
   return (
     <main className="flex min-h-screen flex-col justify-between p-4 lg:p-24">
-      <section className="flex flex-col justify-between space-y-2 gap-2">
+      <section className="flex flex-col justify-between gap-10">
         {unionsData.map((union, index) => (
           <>
-            <h1>
+            <h1 className="lg:text-2xl">
               {" "}
               {index + 1}. {union.name}
             </h1>
