@@ -54,7 +54,7 @@ const TableData = ({
             </TableHead>
           ))}
 
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead className="text-right">সর্বমোট ভোট</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
