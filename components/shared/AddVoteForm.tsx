@@ -79,7 +79,6 @@ const AddVoteForm = ({ onSubmit, loading }: Props) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-
         {/* union */}
         <Select required value={union} onValueChange={(e) => setUnion(e)}>
           <SelectTrigger className="w-[180px]">
@@ -95,7 +94,6 @@ const AddVoteForm = ({ onSubmit, loading }: Props) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-
         <Select
           required
           value={voteCenter}
@@ -114,9 +112,7 @@ const AddVoteForm = ({ onSubmit, loading }: Props) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-
         {/* Vote Centers */}
-
         <Input
           className="w-[180px]"
           placeholder="Total Vote"
@@ -126,8 +122,8 @@ const AddVoteForm = ({ onSubmit, loading }: Props) => {
           onChange={(e) => setTotalVotes(Number(e.target.value))}
         />
       </div>
-      <Button type="submit" className="mt-5">
-        Submit
+      <Button type="submit" className="mt-5" disabled={loading}>
+        {loading ? "Saving data..." : "Submit"}
       </Button>
     </form>
   );

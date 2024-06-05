@@ -34,7 +34,6 @@ const TableData = ({
   };
 
   const subTotal = (candidateId: string, unionId: string) => {
-    console.info(candidateId);
     const result = voteCounter.filter(
       (x) => x.candidate === candidateId && x.voteCenter.union === unionId
     );
