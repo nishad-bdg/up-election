@@ -38,6 +38,7 @@ const CountVote = ({ candidates, votes }: Props) => {
       <p className="text-lg font-bold">
         মোট প্রাপ্ত কেন্দ্রের ফলাফল: {votes.length / 2}
       </p>
+      <p className="text-lg font-bold">মোট কেন্দ্র : 103</p>
     </div>
   );
 };
