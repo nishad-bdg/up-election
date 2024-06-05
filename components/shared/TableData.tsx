@@ -43,6 +43,10 @@ const TableData = ({
     return total;
   };
 
+  const totalSum = candidates
+    .map((can) => subTotal(can._id, unionId)) // Create an array of subTotal results
+    .reduce((total, num) => total + num, 0); 
+
   return (
     <Table>
       <TableHeader>
@@ -82,6 +86,7 @@ const TableData = ({
               {subTotal(can._id, unionId)}
             </TableCell>
           ))}
+          <TableCell className="text-right">{totalSum}</TableCell>
         </TableRow>
       </TableFooter>
     </Table>
