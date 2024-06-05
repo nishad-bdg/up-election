@@ -1,3 +1,4 @@
+import { voteCounter } from "@/api/voteCounter";
 import { Candidate, VoteCounter } from "@/app/page";
 import Image from "next/image";
 import React from "react";
@@ -18,20 +19,25 @@ const CountVote = ({ candidates, votes }: Props) => {
     return calculateTotalVotes(result);
   };
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-8">
-      {candidates.map((x) => (
-        <>
-          <Image
-            src={x.symbolUrl}
-            alt="symbol"
-            width={150}
-            height={150}
-            key={x._id}
-          />
+    <div className="flex flex-col items-center">
+      <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-8">
+        {candidates.map((x) => (
+          <>
+            <Image
+              src={x.symbolUrl}
+              alt="symbol"
+              width={150}
+              height={150}
+              key={x._id}
+            />
 
-          <p className="text-lg lg:text-3xl">{grandTotal(x._id)}</p>
-        </>
-      ))}
+            <p className="text-lg lg:text-3xl">{grandTotal(x._id)}</p>
+          </>
+        ))}
+      </div>
+      <p className="text-lg font-bold">
+        মোট প্রাপ্ত কেন্দ্রের ফলাফল: {votes.length / 2}
+      </p>
     </div>
   );
 };
