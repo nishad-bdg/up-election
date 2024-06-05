@@ -12,21 +12,23 @@ const AddVoteToCandidate = () => {
   const [countVotes, setCountVotes] = useState<VoteCounter[]>([]);
   const [candidatesData, setCandidatesData] = useState<Candidate[]>([]);
 
+  const fetchVoteData = (): void => {
+    fetchVotes().then((res) => {
+      setCountVotes(res.data);
+    });
+  };
   const onSubmit = (data: VoteFormData) => {
     setLoading(true);
     postVote(data)
-      .then((res) => alert("Vote added successfully"))
+      .then((res) => {
+        alert("Vote added successfully");
+        fetchVoteData();
+      })
       .catch((error) => {
         console.error(error);
         alert("Error saving data");
       });
     setLoading(false);
-  };
-
-  const fetchVoteData = (): void => {
-    fetchVotes().then((res) => {
-      setCountVotes(res.data);
-    });
   };
 
   useEffect(() => {
