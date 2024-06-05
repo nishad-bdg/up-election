@@ -62,7 +62,7 @@ export default function Home() {
       <section className="flex flex-col justify-between gap-10">
         {unionsData.map((union, index: number) => (
           <>
-            <h1 className="lg:text-2xl">
+            <h1 className="font-bold text-lg lg:text-2xl">
               {" "}
               {index + 1}. {union.name}
             </h1>
