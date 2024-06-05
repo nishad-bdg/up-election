@@ -31,7 +31,7 @@ const CountVote = ({ candidates, votes }: Props) => {
               key={x._id}
             />
 
-            <p className="text-lg lg:text-3xl">{grandTotal(x._id)}</p>
+            <p className="text-lg lg:text-3xl font-bold">{grandTotal(x._id)}</p>
           </>
         ))}
       </div>
