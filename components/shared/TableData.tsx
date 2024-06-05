@@ -49,7 +49,6 @@ const TableData = ({
 
   return (
     <Table>
-      <p>Total Center : {voteCenters.length}</p>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px] font-bold text-lg">কেন্দ্রের নাম</TableHead>
