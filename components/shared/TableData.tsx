@@ -51,14 +51,14 @@ const TableData = ({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">কেন্দ্রের নাম</TableHead>
+          <TableHead className="w-[100px] font-bold text-lg">কেন্দ্রের নাম</TableHead>
           {candidates.map((c) => (
             <TableHead key={c._id}>
               <Image src={c.symbolUrl} alt="symbol" width={120} height={120} />
             </TableHead>
           ))}
 
-          <TableHead className="text-right">সর্বমোট ভোট</TableHead>
+          <TableHead className="text-right font-bold text-lg">সর্বমোট ভোট</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
