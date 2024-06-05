@@ -54,7 +54,7 @@ const TableData = ({
           <TableHead className="w-[100px] font-bold text-lg">কেন্দ্রের নাম</TableHead>
           {candidates.map((c) => (
             <TableHead key={c._id}>
-              <Image src={c.symbolUrl} alt="symbol" width={120} height={120} />
+              <Image src={c.symbolUrl} alt="symbol" width={180} height={180} />
             </TableHead>
           ))}
 
